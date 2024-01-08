@@ -1,8 +1,5 @@
-@extends('.layout.app')
-@section('title')
-    Home
-@endsection
-
+@extends('layouts.app')
+@section('title', 'Home')
 @section('content')
     @if ($posts)
         <div class="py-6">

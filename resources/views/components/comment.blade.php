@@ -1,6 +1,7 @@
 <div class="text-black px-4 py-2 antialiased flex">
     @if ($comment->user->image)
-        <img class="rounded-full h-8 w-8 mr-2 mt-1 " src="{{ asset('profiles') . '/' . $comment->user->image }}">
+        <img class="rounded-full h-8 w-8 mr-2 mt-1 " src="{{ $comment->user->url() }}">
+        {{-- <img class="rounded-full h-8 w-8 mr-2 mt-1 " src="{{ asset('profiles') . '/' . $comment->user->image }}"> --}}
     @else
         <div class="rounded-full h-8 w-8 mr-2 mt-1 bg-gray-100 flex items-center justify-center text-center">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">

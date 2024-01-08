@@ -1,4 +1,4 @@
-@extends('layout.app') @section('content')
+@extends('layouts.app') @section('content')
 <!-- component -->
 <div class="h-screen md:flex">
     <div class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center hidden">

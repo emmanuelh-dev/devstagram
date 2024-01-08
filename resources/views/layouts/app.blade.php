@@ -7,6 +7,7 @@
 
     @stack('styles')
     <title>@yield('title') - Devstagram</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
     @livewireStyles
@@ -16,23 +17,23 @@
     <header class="p-2 border-b shadow w-screen sticky z-[100] bg-white flex top-0">
         <nav class="bg-white w-full flex relative justify-between items-center px-8">
             <a href="{{ route('home') }}" class="font-bold text-2xl"> DevStagram </a>
-
-
             <!-- end logo -->
 
             <!-- search bar -->
             <!-- <div class="hidden sm:block flex-shrink flex-grow-0 justify-start px-2"> -->
-            <div class="relative hidden sm:block flex-shrink flex-grow-0 ">
-                <input type="text" class="bg-purple-white bg-gray-100 rounded-lg border-0 p-3 w-full"
-                    placeholder="Search something..." style="min-width:400px;">
-                <div class="absolute top-0 right-0 p-4 pr-3 text-purple-lighter">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                    </svg>
+            @if (!Route::is('login') && !Route::is('register'))
+                <div class="relative hidden sm:block flex-shrink flex-grow-0 ">
+                    <input type="text" class="bg-purple-white bg-gray-100 rounded-lg border-0 p-3 w-full"
+                        placeholder="Search something..." style="min-width:400px;">
+                    <div class="absolute top-0 right-0 p-4 pr-3 text-purple-lighter">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
                 </div>
-            </div>
+            @endif
             <!-- end search bar -->
 
             <!-- login -->
@@ -64,7 +65,7 @@
                             class="inline-flex items-center relative px-3 border rounded-full hover:shadow-lg">
                             {{ auth()->user()->username }}
                             @if (auth()->user()->image)
-                                <img src="{{ asset('profiles') . '/' . auth()->user()->image }}" alt="profile"
+                                <img src="{{ $user->url() }}" alt="profile"
                                     class="rounded-full w-10 h-10 object-cover ml-4 -mr-4">
                             @else
                                 <div class="rounded-full w-10 h-10 object-cover ml-4 -mr-4">
@@ -86,6 +87,8 @@
         </nav>
     </header>
     <main class="bg-gray-100 min-h-screen">@yield('content')</main>
+
+    @include('components.alerts')
     @livewireScripts
 </body>
 

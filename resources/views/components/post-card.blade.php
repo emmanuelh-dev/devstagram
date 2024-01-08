@@ -3,7 +3,8 @@
         <div class="flex">
             <a href="{{ route('post.index', $post->user->username) }}" class="w-auto h-auto rounded-full">
                 <img class="w-12 h-12 object-cover rounded-full shadow cursor-pointer" alt="User avatar"
-                    src="{{ asset('profiles') . '/' . $post->user->image }}">
+                    src="{{ $post->user->url() }}">
+                    {{-- src="{{ asset('profiles') . '/' . $post->user->image }}"> --}}
             </a>
             <div class="flex flex-col mb-2 ml-4 mt-1">
                 <a href="{{ route('post.index', $post->user->username) }}"
@@ -93,7 +94,8 @@
             class="relative flex items-center self-center w-full max-w-xl p-4 overflow-hidden text-gray-600 focus-within:text-gray-400">
             @csrf
             <img class="w-10 h-10 object-cover rounded-full shadow mr-2 cursor-pointer" alt="User avatar"
-                src="{{ asset('profiles/' . auth()->user()->image) }}">
+                src="{{ auth()->user()->url() }}">
+                {{-- src="{{ asset('profiles/' . auth()->user()->image) }}"> --}}
             <span class="absolute inset-y-0 right-0 flex items-center pr-6">
                 <button type="submit" class="p-1 focus:outline-none focus:shadow-none hover:text-blue-500">
                     <svg class="w-6 h-6 transition ease-out duration-300 hover:text-blue-500 text-gray-400"
